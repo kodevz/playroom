@@ -8,40 +8,22 @@
     "playroom": "bin/cli.js"
   },
   "scripts": {
-    "cypress": "start-server-and-test examples:build-and-serve '9000|9001' 'cypress run'",
-    "cypress:dev": "start-server-and-test examples:start '9000|9001' 'cypress open'",
-    "example:start:basic": "./bin/cli.js start --config cypress/projects/basic/playroom.config.js",
-    "example:build:basic": "./bin/cli.js build --config cypress/projects/basic/playroom.config.js",
-    "example:serve:basic": "PORT=9000 serve cypress/projects/basic/dist",
-    "example:start:themed": "./bin/cli.js start --config cypress/projects/themed/playroom.config.js",
-    "example:build:themed": "./bin/cli.js build --config cypress/projects/themed/playroom.config.js",
-    "example:serve:themed": "PORT=9001 serve --config ../serve.json cypress/projects/themed/dist",
-    "examples:start": "concurrently 'npm:example:start:*'",
-    "examples:build": "concurrently 'npm:example:build:*'",
-    "examples:serve": "concurrently 'npm:example:serve:*'",
-    "examples:build-and-serve": "yarn examples:build && yarn examples:serve",
-    "preview:build": "cd examples/braid-design-system && yarn && yarn build",
-    "commit": "git-cz",
+    "cypress": "start-server-and-test build-and-serve '9000|9001' 'cypress run'",
+    "cypress:dev": "start-server-and-test start '9000|9001' 'cypress open'",
+    "start:basic": "node bin/cli.js start --config cypress/projects/basic/playroom.config.js",
+    "build:basic": "node bin/cli.js build --config cypress/projects/basic/playroom.config.js",
+    "serve:basic": "SET PORT=9000 && serve cypress/projects/basic/dist",
+    "local:start": "concurrently 'npm:start:*'",
+    "local:build": "concurrently 'npm:build:*'",
+    "local:serve": "concurrently 'npm:serve:*'",
+    "build-and-serve": "npm run local:build && npm run local:serve",
+    "preview:build": "cd examples/braid-design-system && npm && npm build",
     "lint": "eslint . && prettier --list-different '**/*.{js,md,less,ts,tsx}' && tsc --noEmit",
     "format": "prettier --write '**/*.{js,md,less,ts,tsx}'",
     "semantic-release": "semantic-release",
     "test": "jest src",
     "post-commit-status": "node scripts/postCommitStatus.js",
     "deploy-preview": "surge -p ./examples/braid-design-system/dist"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint --edit --extends seek",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "**/*.{js,ts,tsx}": [
-      "yarn eslint"
-    ],
-    "**/*.{js,md,less,ts,tsx}": [
-      "prettier --write"
-    ]
   },
   "config": {
     "commitizen": {

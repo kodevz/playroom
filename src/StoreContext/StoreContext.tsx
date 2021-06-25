@@ -399,7 +399,7 @@ export const StoreProvider = ({
       // they are also removed from the url. Replacing state
       // with an empty string (returned from `createUrl`)
       // does not do anything, so replacing with `#`
-      updateUrlCode(compressParams(params));
+      // updateUrlCode(compressParams(params)); 
     },
     500
   );

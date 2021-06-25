@@ -1,6 +1,6 @@
-import React, { ComponentType } from 'react';
+import React, { ComponentType, useContext } from 'react';
 import lzString from 'lz-string';
-
+import localforage from 'localforage';
 import { useParams } from '../utils/params';
 import { compileJsx } from '../utils/compileJsx';
 import SplashScreen from './SplashScreen/SplashScreen';
@@ -12,6 +12,8 @@ import styles from './Preview.less';
 import CatchErrors from './CatchErrors/CatchErrors';
 // @ts-ignore
 import RenderCode from './RenderCode/RenderCode';
+import { StoreContext } from '../StoreContext/StoreContext';
+import playroomConfig from '../config';
 
 interface PreviewState {
   code?: string;
@@ -24,24 +26,31 @@ export interface PreviewProps {
   FrameComponent: ComponentType<{ themeName: string; theme: any }>;
 }
 export default ({ themes, components, FrameComponent }: PreviewProps) => {
-  const { themeName, code } = useParams(
-    (rawParams): PreviewState => {
-      if (rawParams.code) {
-        const result = JSON.parse(
-          lzString.decompressFromEncodedURIComponent(String(rawParams.code)) ??
-            ''
-        );
+  //const { themeName, code } = useParams(
+  // //   (rawParams): PreviewState => {
+  // //     if (rawParams.code) {
 
-        return {
-          code: compileJsx(result.code),
-          themeName: result.theme,
-        };
-      }
+  // //       const result = JSON.parse(
+  // //         lzString.decompressFromEncodedURIComponent(String(rawParams.code)) ??
+  // //           ''
+  // //       );
 
-      return {};
-    }
-  );
 
+
+  // //       return {
+  // //         code: compileJsx(result.code),
+  // //         themeName: result.theme,
+  // //       };
+  // //     }
+
+  // //     return {};
+  // //   }
+  // );
+  let previewCode: any = localStorage.getItem('playroom-preview-code');
+ 
+
+  const code = compileJsx(previewCode);
+  const themeName = ''
   const resolvedTheme = themeName ? themes[themeName] : null;
 
   return (

@@ -20,8 +20,3 @@ export const Foo = withPropTypes(({ color = 'black', children }) => (
   </div>
 ));
 
-export const Bar = withPropTypes(({ color = 'black', children }) => (
-  <div style={{ color }}>
-    Bar{children ? <div style={parent}>{children}</div> : null}
-  </div>
-));
