@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import queryString, { ParsedQuery } from 'query-string';
 
 import playroomConfig from '../config';
+import { compileJsx } from './compileJsx';
 
 const history = createBrowserHistory();
 
@@ -34,17 +35,30 @@ export function getParamsFromQuery(location = history.location) {
   }
 }
 
-export function useParams<ReturnType>(
-  selector: (rawParams: ParsedQuery) => ReturnType
-): ReturnType {
+export function useParams<ReturnType>(selector: (rawParams: ParsedQuery) => ReturnType): ReturnType {
   const [params, setParams] = useState(getParamsFromQuery);
 
   useEffect(
-    () =>
-      history.listen((location) => {
-        setParams(getParamsFromQuery(location));
-      }),
+    () => {
+      let code;
+      window.onstorage = () => {
+        code = localStorage.getItem('code');
+        code = compileJsx(code as string)
+        setParams({
+          code: code,
+          themeName: "__PLAYROOM__NO_THEME__"
+        });
+      };
+      // history.listen((location) => {
+      //   let weaverCode = compileJsx(localStorage.getItem('code'));
+      //   console.log("location",getParamsFromQuery(location))
+      //   setParams({
+      //     code: weaverCode,
+      //     themeName: "__PLAYROOM__NO_THEME__"
+      //   });
+      // }),
     []
+    }
   );
 
   return selector(params);

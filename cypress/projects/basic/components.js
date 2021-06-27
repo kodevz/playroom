@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {EntityModule1} from "weaveroo-components";
+import "./style/tailwind.css";
 
 const withPropTypes = (component) => {
   component.propTypes = {
@@ -19,4 +21,10 @@ export const Foo = withPropTypes(({ color = 'black', children }) => (
     Foo{children ? <div style={parent}>{children}</div> : null}
   </div>
 ));
+
+export const EntityModule = (props) => {
+  return (
+    <EntityModule1 />
+  )
+}
 

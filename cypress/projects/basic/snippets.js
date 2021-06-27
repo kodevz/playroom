@@ -19,4 +19,9 @@ export default [
     name: 'Blue',
     code: '<Bar color="blue">Blue Bar</Bar>',
   },
+  {
+    group: 'Entity',
+    name: 'Entity Module1',
+    code: '<EntityModule1 />',
+  }
 ];

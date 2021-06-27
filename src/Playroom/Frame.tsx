@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useContext, useState} from 'react';
+import { compileJsx } from '../utils/compileJsx';
 import { useParams } from '../utils/params';
 // @ts-ignore
 import CatchErrors from './CatchErrors/CatchErrors';
@@ -18,12 +19,20 @@ export default function Frame({
   components,
   FrameComponent,
 }: FrameProps) {
-  const { themeName, code } = useParams((rawParams) => ({
-    themeName:
-      typeof rawParams.themeName === 'string' ? rawParams.themeName : '',
-    code: typeof rawParams.code === 'string' ? rawParams.code : '',
-  }));
+  console.log("on load-->1")
 
+  let { code, themeName } = useParams((rawParams) => {
+    return {
+      themeName:
+        typeof rawParams.themeName === 'string' ? rawParams.themeName : '',
+      code: typeof rawParams.code === 'string' ? rawParams.code : '',
+    }
+  });
+  if(!code) {
+    code = localStorage.getItem('code');
+    code = compileJsx(code);
+    console.log("code not exist in Frame-->",localStorage.getItem('code'));
+  }
   const resolvedThemeName =
     themeName === '__PLAYROOM__NO_THEME__' ? null : themeName;
   const resolvedTheme = resolvedThemeName ? themes[resolvedThemeName] : null;

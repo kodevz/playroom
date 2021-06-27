@@ -12,7 +12,7 @@ export default (theme: string) => {
   const [{ code }] = useContext(StoreContext);
 
   const isThemed = theme !== '__PLAYROOM__NO_THEME__';
-  localStorage.setItem('playroom-preview-code',code);
+
   return createPreviewUrl({
     baseUrl,
     code,

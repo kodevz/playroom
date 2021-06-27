@@ -121,7 +121,7 @@ const createReducer = ({
     case 'updateCode': {
       const { code, cursor } = action.payload;
       store.setItem('code', code);
-
+      localStorage.setItem('code',code);
       return {
         ...state,
         code,
@@ -448,7 +448,7 @@ export const StoreProvider = ({
         storedVisibleWidths,
         storedVisibleThemes,
       ]) => {
-        const code = codeFromQuery || storedCode || exampleCode;
+        const code = storedCode || exampleCode;
         const editorPosition = storedPosition;
         const editorHeight = storedHeight;
         const editorWidth = storedWidth;

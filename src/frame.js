@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Frame from './Playroom/Frame';
+import { StoreProvider } from './StoreContext/StoreContext';
 
 const outlet = document.createElement('div');
 document.body.appendChild(outlet);
@@ -11,11 +12,13 @@ const renderFrame = ({
   FrameComponent = require('./frameComponent'),
 } = {}) => {
   render(
-    <Frame
-      components={components}
-      themes={themes}
-      FrameComponent={FrameComponent}
-    />,
+    <StoreProvider>
+      <Frame
+        components={components}
+        themes={themes}
+        FrameComponent={FrameComponent}
+      />
+    </StoreProvider>,
     outlet
   );
 };

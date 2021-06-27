@@ -46,11 +46,13 @@ export default ({ themes, components, FrameComponent }: PreviewProps) => {
   // //     return {};
   // //   }
   // );
-  let previewCode: any = localStorage.getItem('playroom-preview-code');
- 
 
-  const code = compileJsx(previewCode);
-  const themeName = ''
+  const [storeObj] = useContext(
+    StoreContext
+  );
+
+  const code  = compileJsx(storeObj.code);
+  const themeName = '';
   const resolvedTheme = themeName ? themes[themeName] : null;
 
   return (
