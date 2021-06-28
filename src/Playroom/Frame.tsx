@@ -19,9 +19,8 @@ export default function Frame({
   components,
   FrameComponent,
 }: FrameProps) {
-  console.log("on load-->1")
 
-  let { code, themeName } = useParams((rawParams) => {
+  let { code, themeName } : any = useParams((rawParams) => {
     return {
       themeName:
         typeof rawParams.themeName === 'string' ? rawParams.themeName : '',
@@ -31,7 +30,6 @@ export default function Frame({
   if(!code) {
     code = localStorage.getItem('code');
     code = compileJsx(code);
-    console.log("code not exist in Frame-->",localStorage.getItem('code'));
   }
   const resolvedThemeName =
     themeName === '__PLAYROOM__NO_THEME__' ? null : themeName;
