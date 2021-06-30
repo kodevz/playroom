@@ -52,7 +52,7 @@ export default ({ themes, components, FrameComponent }: PreviewProps) => {
   // );
 
   useEffect( () => {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.location.hash.replace(/^#/, ''));
     let tempInfo = Object.fromEntries(params.entries());
     let publish = params.get('publish');
 
@@ -71,7 +71,7 @@ export default ({ themes, components, FrameComponent }: PreviewProps) => {
           let htmlString = document.documentElement.outerHTML
           axios({
             method: 'post',
-            url: 'http://ih3rvualfb.execute-api.ap-south-1.amazonaws.com/dev/template/tempData',
+            url: 'https://ih3rvualfb.execute-api.ap-south-1.amazonaws.com/dev/template/tempData',
             data: qs.stringify({
               htmlString: htmlString,
               tempInfo : tempInfo
