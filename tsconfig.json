@@ -7,6 +7,7 @@
     "resolveJsonModule": true,
     "noUnusedLocals": true,
     "strict": true,
+    "noImplicitAny": false,
     "jsx": "preserve",
     "lib": ["dom", "es2015"],
     "target": "es5"

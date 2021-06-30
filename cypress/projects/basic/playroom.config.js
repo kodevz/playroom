@@ -7,6 +7,7 @@ module.exports = {
   outputPath: './dist',
   title: "Weaveroo Playroom",
   openBrowser: true,
+  widths: [320, 768, 1024, 1536 ],
   storageKey: 'playroom-example-basic',
   webpackConfig: () => ({
     module: {

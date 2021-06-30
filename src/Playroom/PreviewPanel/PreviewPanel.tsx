@@ -9,6 +9,7 @@ import { Stack } from '../Stack/Stack';
 import { Inline } from '../Inline/Inline';
 import PlayIcon from '../icons/PlayIcon';
 import { Button } from '../Button/Button';
+import WeaverForm from "../weaverForm/weaverForm";
 
 interface PreviewPanelProps {
   themes: string[];
@@ -61,6 +62,7 @@ export default ({ themes, visibleThemes }: PreviewPanelProps) => {
           />
         </Inline>
       </Stack>
+      <WeaverForm />
     </ToolbarPanel>
   );
 };
