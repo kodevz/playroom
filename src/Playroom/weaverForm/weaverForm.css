@@ -8,6 +8,7 @@
 
 #wever-form form input {
     width : 100%;
+    border: 1px solid black;
 }
 
 #wever-form .form-div {
@@ -19,12 +20,21 @@
 #wever-form .submit {
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 5px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #2f559c;
+}
+
+#wever-form label {
+    font-size: 16px;
+    color: black;
+}
+
+#wever-form input {
+    color: black;
 }

@@ -59,13 +59,19 @@ export default ({ themes, components, FrameComponent }: PreviewProps) => {
     if(publish === "true") {
       $(function() { 
         setTimeout(() => {
+          let html = `
+          <link rel="stylesheet" href="https://weaver-testing.s3.ap-south-1.amazonaws.com/component-lib/tailwind.css">
+          <script src="https://weaver-ai-template-syndication-poc.s3.ap-south-1.amazonaws.com/assets/js/iframeResizer.contentWindow.min.js" ></script>
+          <title>${tempInfo.code} | Weaver AI Template Engine</title>
+          `
           $('script').remove();
+          $('title').remove();
           $('#preview_container').next().remove();
-          $('head').append(`<link rel="stylesheet" href="https://weaver-testing.s3.ap-south-1.amazonaws.com/component-lib/tailwind.css">`);
+          $('head').append(html);
           let htmlString = document.documentElement.outerHTML
           axios({
             method: 'post',
-            url: 'http://localhost:3000/template/tempData',
+            url: 'http://ih3rvualfb.execute-api.ap-south-1.amazonaws.com/dev/template/tempData',
             data: qs.stringify({
               htmlString: htmlString,
               tempInfo : tempInfo
@@ -75,6 +81,7 @@ export default ({ themes, components, FrameComponent }: PreviewProps) => {
             }
           }).then(res => {
             console.log(res);
+            alert("Publish Success")
           })
         }, 5000)
       });
