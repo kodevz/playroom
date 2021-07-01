@@ -22,7 +22,7 @@ class WeaverForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     let stateData = this.state
-    window.open(`http://weaveroo-playroom.s3-website.ap-south-1.amazonaws.com/preview/#?publish=true&retailerId=${stateData.retailerId}&code=${stateData.code}&tempId=${stateData.tempId}&ln=${stateData.ln}`);
+    window.open(`${window.location.origin}/preview/#?publish=true&retailerId=${stateData.retailerId}&code=${stateData.code}&tempId=${stateData.tempId}&ln=${stateData.ln}`);
     this.clearForm();
   }
 

@@ -71,7 +71,7 @@ export default ({ themes, components, FrameComponent }: PreviewProps) => {
           let htmlString = document.documentElement.outerHTML
           axios({
             method: 'post',
-            url: 'https://ih3rvualfb.execute-api.ap-south-1.amazonaws.com/dev/template/tempData',
+            url: 'https://ih3rvualfb.execute-api.ap-south-1.amazonaws.com/dev/products/tempData',
             data: qs.stringify({
               htmlString: htmlString,
               tempInfo : tempInfo
@@ -80,8 +80,11 @@ export default ({ themes, components, FrameComponent }: PreviewProps) => {
               'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
             }
           }).then(res => {
-            console.log(res);
-            alert("Publish Success")
+            if(res.data.statusCode === 'success') {
+              alert("Template Generation Success")
+            }else {
+              alert("Template Generation Failed for some reason!!!")
+            }
           })
         }, 5000)
       });

@@ -42,7 +42,8 @@ export function useParams<ReturnType>(selector: (rawParams: ParsedQuery) => Retu
     () => {
       let code;
       window.onstorage = () => {
-        code = localStorage.getItem('code');
+        let codeInState = localStorage.getItem('code');
+        code = codeInState ? codeInState : playroomConfig.exampleCode
         code = compileJsx(code as string)
         setParams({
           code: code,

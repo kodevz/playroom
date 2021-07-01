@@ -1,6 +1,7 @@
 import React,{useContext, useState} from 'react';
 import { compileJsx } from '../utils/compileJsx';
 import { useParams } from '../utils/params';
+import playroomConfig from '../config'
 // @ts-ignore
 import CatchErrors from './CatchErrors/CatchErrors';
 // @ts-ignore
@@ -28,8 +29,11 @@ export default function Frame({
     }
   });
   if(!code) {
-    code = localStorage.getItem('code');
-    code = compileJsx(code);
+    let codeonStart:any = localStorage.getItem('code');
+    if(!codeonStart) {
+      codeonStart = playroomConfig.exampleCode
+    }
+    code = compileJsx(codeonStart);
   }
   const resolvedThemeName =
     themeName === '__PLAYROOM__NO_THEME__' ? null : themeName;
