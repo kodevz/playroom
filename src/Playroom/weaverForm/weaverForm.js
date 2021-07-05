@@ -80,7 +80,7 @@ class WeaverForm extends React.Component {
               />
             </div>
             <button className="submit">
-              Publish
+              Generate Template
             </button>
 
           </form>

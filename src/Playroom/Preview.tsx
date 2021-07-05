@@ -59,16 +59,9 @@ export default ({ themes, components, FrameComponent }: PreviewProps) => {
     if(publish === "true") {
       $(function() { 
         setTimeout(() => {
-          let html = `
-          <link rel="stylesheet" href="https://weaver-testing.s3.ap-south-1.amazonaws.com/component-lib/tailwind.css">
-          <script src="https://weaver-ai-template-syndication-poc.s3.ap-south-1.amazonaws.com/assets/js/iframeResizer.contentWindow.min.js" ></script>
-          <title>${tempInfo.code} | Weaver AI Template Engine</title>
-          `
           $('script').remove();
-          $('title').remove();
           $('#preview_container').next().remove();
-          $('head').append(html);
-          let htmlString = document.documentElement.outerHTML
+          let htmlString = $('body')[0].innerHTML
           axios({
             method: 'post',
             url: 'https://ih3rvualfb.execute-api.ap-south-1.amazonaws.com/dev/products/tempData',
